@@ -1,0 +1,45 @@
+{
+ "name": "flare",
+ "children": [
+  {
+   "name": "analytics",
+   "children": [
+    {
+     "name": "cluster",
+     "children": [
+      {"name": "AgglomerativeCluster", "size": 20},
+      {"name": "CommunityStructure", "size": 20},
+      {"name": "MergeEdge", "size": 20}
+     ]
+    },
+    {
+     "name": "graph",
+     "children": [
+      {"name": "BetweennessCentrality", "size": 30},
+      {"name": "LinkDistance", "size": 30}
+     ]
+    }
+   ]
+  },
+  {
+   "name": "aln2",
+   "children": [
+    {
+     "name": "jisu",
+     "children": [
+      {"name": "AgglomerativeCluster", "size": 20},
+      {"name": "CommunityStructure", "size": 10},
+      {"name": "MergeEdge", "size": 30}
+     ]
+    },
+    {
+     "name": "hahaha",
+     "children": [
+      {"name": "BetweennessCentrality", "size": 10},
+      {"name": "LinkDistance", "size": 50}
+     ]
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=utf-8 />
+<title>D3 Test</title>
+<script src="../lib/d3.v3.js" charset="utf-8"></script>
+
+<style>
+    div {
+        border :  1px solid black;
+    }
+    div.bar {
+        display: inline-block;  /* can use 'inline-block' */
+        width: 20px;
+        height: 75px;   /* We'll override this later */
+        background-color: teal;
+    }
+
+    svg {
+        border : 1px solid gray;
+    }
+
+    rect.stroke {
+        stroke : red;
+        stroke-width : 3px;
+    }
+
+    body > svg:nth-child(1){
+        margin-top : 20px;
+    }
+
+</style>
+
+
+</head>
+<body>
+ <svg width="550" height="200">
+
+    <circle cx="25" cy="25" r="8%" fill="blue" stroke="gray" stroke-width="1"/>
+    <ellipse cx="250" cy="25" rx="100" ry="25" />
+    <text x = "220" y = "65">Ellipse </text>
+    <line x1="400" y1="0" x2="500" y2="50" stroke="black"/>
+    <rect x="100" y="70" width="300" height="20" class="stroke" />
+</svg> 
+
+</br>
+
+ <svg width="550" height="200">
+    <circle cx="45" cy="45" r="8%" fill="blue" stroke="gray" stroke-width="1"/>
+    <circle cx="85" cy="45" r="8%" fill="blue" stroke="gray" stroke-width="1" opacity='0.9'/>
+    <circle cx="125" cy="45" r="8%" fill="blue" stroke="gray" stroke-width="1" opacity='0.6'/>
+    <circle cx="165" cy="45" r="8%" fill="yellow" stroke="gray" stroke-width="1" opacity='0.4'/>
+<svg>
+
+<p>
+
+
+<script>
+    //selector. selectAll()
+    //d3.select('body').append('p').text('new parahraph');
+
+    var dataset = [ 5, 10, 15, 20, 25 ];
+    var dataset2 = [ 25, 7, 5, 26, 11, 8, 25, 14, 23, 19, 14, 11, 22, 29, 11, 13, 12, 17, 18, 10, 24, 18, 25, 9, 3 ];
+
+
+    //set style in existed Division elements
+    d3.select('#type1').data(dataset).style("height" , function(d){return d + 'px';});
+
+
+    //set style with create division elements
+    //기존에 div가 있고 새로운 div를 만들어서 추가할 거면 id나 class를 같이 추가하는 것이 해결책임
+    d3.select('body').selectAll("div.bar").data(dataset2).enter().append("div")
+        .attr('class' , 'bar')
+        .style("height" , function(d){
+            return d * 5  + 'px';
+          })
+        .style("background-color" , function(d){
+            if(d > 20)  { 
+                return "rgb(0, 82, 82)";
+            }
+        })
+        .style('margin-right' , '2px')
+        
+
+     d3.select('body').append('span').text('a Bar chart using division tag').style('margin-left' , '20px');
+
+
+     //circle
+     var svg= d3.select('body')
+        .append('svg')
+        .attr('width' , 500)
+        .attr('height' , 200)
+
+     var svg_circle = svg.selectAll("circle")
+        .data([5,10,15,20,30,50])
+        .enter()
+        .append('circle');
+
+     svg_circle.attr('cx' ,  function(d, i) {
+                    return (i * 50) ;
+                })
+              .attr('cy' , 100)
+              .attr('r' , function(d) {
+                    return d;
+                });
+
+     svg_circle.attr('fill' , 'black')
+              .attr('stroke' , 'red')
+
+    
+    //bar chard
+    var dataset_bar = [ 5, 10, 13, 19, 21, 25, 22, 18, 15, 13, 11, 12, 15, 20, 18, 17, 16, 18, 23, 25 ];
+    var interval_width = 2;
+
+    var svg_bar = d3.select('body')
+                    .append('svg')
+                    .attr('width' ,500)
+                    .attr('height' ,100);
+
+    svg_bar.selectAll("rect")
+        .data(dataset_bar)
+        .enter()
+        .append("rect")
+        .attr('x' , function(d,i) {
+                        return  i * (500/dataset_bar.length);
+        })
+        .attr('y' , function(d,i) {
+                        return 100 - (d * 4);
+        })
+        .attr('width', 500/dataset_bar.length - interval_width)
+        .attr('height' ,  function(d) {
+                        return d * 4;
+        })
+        .attr('fill' , function(d) {
+                return 'rgb(0,0,' + (d * 10) + ')';
+        });
+
+   svg_bar.selectAll('text')
+        .data(dataset_bar)
+        .enter()
+        .append("text")
+        .text(function(d) { return d})
+        .attr("x" , function(d,i) {
+                        return i * (500/dataset_bar.length) + 3;
+        })
+        .attr("y" , function(d,i) {
+                        return 100 - (d*4) + 10; 
+        })
+        .attr("font-size" , "9px")
+        .attr("fill" , 'white')
+
+    //scatterplot
+    //http://alignedleft.com/content/03-tutorials/01-d3/140-making-a-scatterplot/3.html
+
+    var scale = d3.scale.linear()
+    .domain([100, 500])
+    .range([10, 350]);
+
+    console.log('scale -> ' + scale(200));
+
+</script>
+</body>
+</html>

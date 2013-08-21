@@ -1,0 +1,35 @@
+{
+    "name" : "firewall",
+    "children" : [
+        {
+            "name"      : "risk2",
+            "children"  : [
+                {
+                    "name" : "Destination_ip",
+                    "children" : [
+                        {"name" : "192.168.0.1"   , "size" : 123},
+                        {"name" : "192.138.22l.21", "size" : 23},
+                        {"name" : "192.168.90.2"  , "size" : 32},
+                        {"name" : "192.128.102.1" , "size" : 4},
+                        {"name" : "158.133.212.3" , "size" : 323},
+                        {"name" : "132.168.90.11" , "size" : 20},
+                        {"name" : "112.168.30.13" , "size" : 223},
+                        {"name" : "212.168.33.13" , "size" : 8}
+                    ]
+                }, 
+                {
+                    "name" : "Destination_port",
+                    "children" : [
+                        {"name" : "80"  , "size" : 523},
+                        {"name" : "6856", "size" : 123},
+                        {"name" : "9761", "size" : 12},
+                        {"name" : "443" , "size" : 49},
+                        {"name" : "8080", "size" : 38},
+                        {"name" : "657" , "size" : 20}
+                    ]
+                }
+             ]
+        }
+    ]
+}
+
